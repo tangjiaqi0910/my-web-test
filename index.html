@@ -1,11 +1,1515 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta name="theme-color" content="#f5f7f0">
+    <meta name="description" content="唐佳琪的个人主页，记录个人信息、校园生活、专业规划与生活片段。">
+    <title>唐佳琪 · 个人主页</title>
+    <style>
+        :root {
+            color-scheme: light;
+            --ink: #263d36;
+            --muted: #78877e;
+            --green: #668b72;
+            --green-dark: #456b55;
+            --mint: #e6efe6;
+            --cream: #f8f8f2;
+            --line: #e5e9df;
+            --card: rgba(255, 255, 255, 0.82);
+            --shadow: 0 18px 48px rgba(62, 87, 68, 0.08);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 96px;
+        }
+
+        body {
+            min-width: 320px;
+            margin: 0;
+            color: var(--ink);
+            background:
+                radial-gradient(ellipse at 9% 7%, rgba(216, 233, 216, 0.7), transparent 34rem),
+                radial-gradient(ellipse at 95% 58%, rgba(242, 231, 205, 0.45), transparent 30rem),
+                var(--cream);
+            font-family: "Segoe UI", "Microsoft YaHei", "PingFang SC", sans-serif;
+            line-height: 1.8;
+        }
+
+        a {
+            color: inherit;
+        }
+
+        button,
+        input,
+        textarea {
+            font: inherit;
+        }
+
+        button:focus-visible,
+        a:focus-visible,
+        input:focus-visible,
+        textarea:focus-visible {
+            outline: 3px solid rgba(102, 139, 114, 0.42);
+            outline-offset: 3px;
+        }
+
+        .site-header {
+            position: sticky;
+            z-index: 20;
+            top: 0;
+            border-bottom: 1px solid rgba(224, 231, 221, 0.82);
+            background: rgba(250, 250, 246, 0.88);
+            backdrop-filter: blur(16px);
+        }
+
+        .nav-wrap {
+            display: flex;
+            width: min(1120px, 100% - 40px);
+            min-height: 68px;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            margin: 0 auto;
+        }
+
+        .brand {
+            flex: 0 0 auto;
+            color: var(--green-dark);
+            font-family: "STSong", "Songti SC", "SimSun", serif;
+            font-size: 1.15rem;
+            letter-spacing: 0.12em;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .nav-links a {
+            display: block;
+            padding: 8px 13px;
+            border-radius: 999px;
+            color: #64746a;
+            font-size: 0.86rem;
+            text-decoration: none;
+            transition: color 180ms ease, background 180ms ease, transform 180ms ease;
+        }
+
+        .nav-links a:hover,
+        .nav-links a[aria-current="location"] {
+            color: var(--green-dark);
+            background: #eaf1e8;
+            transform: translateY(-1px);
+        }
+
+        .page {
+            width: min(1080px, 100% - 40px);
+            margin: 0 auto;
+            padding: 28px 0 42px;
+        }
+
+        .hero {
+            position: relative;
+            display: grid;
+            min-height: 390px;
+            overflow: hidden;
+            grid-template-columns: 1.2fr 0.8fr;
+            align-items: center;
+            gap: 28px;
+            padding: clamp(32px, 7vw, 72px);
+            border: 1px solid rgba(255, 255, 255, 0.85);
+            border-radius: 30px;
+            background:
+                radial-gradient(circle at 82% 18%, rgba(220, 235, 220, 0.84), transparent 20rem),
+                linear-gradient(120deg, rgba(255, 255, 255, 0.93), rgba(245, 248, 239, 0.82));
+            box-shadow: var(--shadow);
+        }
+
+        .hero::after {
+            position: absolute;
+            top: -98px;
+            right: -44px;
+            width: 330px;
+            height: 330px;
+            border: 1px solid rgba(102, 139, 114, 0.17);
+            border-radius: 50%;
+            box-shadow: 0 0 0 28px rgba(102, 139, 114, 0.035), 0 0 0 58px rgba(102, 139, 114, 0.025);
+            content: "";
+            pointer-events: none;
+        }
+
+        .hero-copy {
+            position: relative;
+            z-index: 1;
+        }
+
+        .eyebrow,
+        .section-kicker {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            margin: 0 0 15px;
+            color: var(--green-dark);
+            font-size: 0.78rem;
+            letter-spacing: 0.15em;
+        }
+
+        .eyebrow::before,
+        .section-kicker::before {
+            width: 22px;
+            height: 1px;
+            background: var(--green);
+            content: "";
+        }
+
+        h1,
+        h2,
+        h3,
+        p {
+            overflow-wrap: anywhere;
+        }
+
+        h1 {
+            margin: 0;
+            font-family: "STSong", "Songti SC", "SimSun", serif;
+            font-size: clamp(3rem, 8vw, 5.3rem);
+            font-weight: 500;
+            letter-spacing: 0.12em;
+            line-height: 1.2;
+        }
+
+        .hero-subtitle {
+            margin: 15px 0 0;
+            color: var(--muted);
+            font-size: clamp(0.92rem, 2vw, 1.06rem);
+            letter-spacing: 0.04em;
+        }
+
+        .hero-note {
+            max-width: 560px;
+            margin: 25px 0 0;
+            color: #53685d;
+            font-family: "STSong", "Songti SC", "SimSun", serif;
+            font-size: 1.04rem;
+        }
+
+        .hero-note strong {
+            color: var(--green-dark);
+            font-weight: 500;
+        }
+
+        .intro-text {
+            margin: 0;
+            font-size: 1rem;
+        }
+
+        .hero-portrait {
+            position: relative;
+            z-index: 1;
+            width: min(100%, 255px);
+            aspect-ratio: 4 / 5;
+            justify-self: center;
+            overflow: hidden;
+            padding: 9px;
+            border: 1px solid rgba(255, 255, 255, 0.9);
+            border-radius: 48% 48% 24px 24px;
+            background: rgba(255, 255, 255, 0.62);
+            box-shadow: 0 18px 38px rgba(65, 87, 67, 0.16);
+            transform: rotate(2deg);
+            transition: transform 280ms ease, box-shadow 280ms ease;
+        }
+
+        .hero-portrait:hover {
+            box-shadow: 0 22px 45px rgba(65, 87, 67, 0.2);
+            transform: rotate(0) translateY(-5px);
+        }
+
+        .hero-portrait img {
+            width: 100%;
+            height: 100%;
+            border-radius: 48% 48% 17px 17px;
+            object-fit: cover;
+        }
+
+        .hero-badge {
+            position: absolute;
+            right: 0;
+            bottom: 20px;
+            padding: 7px 13px;
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            border-radius: 999px;
+            color: var(--green-dark);
+            background: rgba(255, 255, 255, 0.88);
+            font-size: 0.76rem;
+            letter-spacing: 0.04em;
+            box-shadow: 0 6px 20px rgba(65, 87, 67, 0.1);
+        }
+
+        .section {
+            padding-top: 72px;
+            scroll-margin-top: 82px;
+        }
+
+        .section-heading {
+            display: flex;
+            align-items: end;
+            justify-content: space-between;
+            gap: 20px;
+            margin-bottom: 22px;
+        }
+
+        .section-kicker {
+            margin-bottom: 7px;
+            color: #81958a;
+            font-size: 0.7rem;
+        }
+
+        .section-heading h2 {
+            margin: 0;
+            font-family: "STSong", "Songti SC", "SimSun", serif;
+            font-size: clamp(1.7rem, 4vw, 2.25rem);
+            font-weight: 500;
+            letter-spacing: 0.04em;
+            line-height: 1.35;
+        }
+
+        .section-aside {
+            max-width: 330px;
+            margin: 0;
+            color: var(--muted);
+            font-size: 0.85rem;
+            text-align: right;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+        }
+
+        .card {
+            border: 1px solid rgba(229, 233, 223, 0.94);
+            border-radius: 22px;
+            background: var(--card);
+            box-shadow: 0 10px 32px rgba(62, 87, 68, 0.045);
+            transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease;
+        }
+
+        .card:hover {
+            border-color: #d6e2d5;
+            box-shadow: 0 16px 38px rgba(62, 87, 68, 0.09);
+            transform: translateY(-4px);
+        }
+
+        .info-card {
+            padding: 26px 28px;
+        }
+
+        .card-title {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+            margin: 0 0 20px;
+            font-family: "STSong", "Songti SC", "SimSun", serif;
+            font-size: 1.28rem;
+            font-weight: 500;
+        }
+
+        .card-title::before {
+            width: 4px;
+            height: 19px;
+            border-radius: 4px;
+            background: #9ab79d;
+            content: "";
+        }
+
+        .facts {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 17px 14px;
+            margin: 0;
+        }
+
+        .facts div {
+            min-width: 0;
+            padding: 0 0 11px;
+            border-bottom: 1px solid #edf0e9;
+        }
+
+        .facts dt {
+            margin-bottom: 3px;
+            color: #91a096;
+            font-size: 0.76rem;
+            letter-spacing: 0.06em;
+        }
+
+        .facts dd {
+            margin: 0;
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        .traits {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 9px;
+            margin-top: 20px;
+        }
+
+        .trait,
+        .hobby {
+            padding: 5px 12px;
+            border: 1px solid #e0eadf;
+            border-radius: 999px;
+            color: #5d7965;
+            background: #f3f7f1;
+            font-size: 0.82rem;
+        }
+
+        .campus-card {
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.9), #f0f5ed);
+        }
+
+        .campus-card::after {
+            position: absolute;
+            right: -34px;
+            bottom: -55px;
+            width: 155px;
+            height: 155px;
+            border: 1px solid rgba(102, 139, 114, 0.14);
+            border-radius: 50%;
+            box-shadow: 0 0 0 18px rgba(102, 139, 114, 0.035);
+            content: "";
+            pointer-events: none;
+        }
+
+        .campus-list {
+            position: relative;
+            z-index: 1;
+            display: grid;
+            gap: 18px;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .campus-list li {
+            display: grid;
+            grid-template-columns: 78px 1fr;
+            gap: 12px;
+            align-items: start;
+        }
+
+        .campus-label {
+            padding-top: 2px;
+            color: #91a096;
+            font-size: 0.78rem;
+        }
+
+        .campus-value {
+            font-size: 0.93rem;
+            font-weight: 500;
+        }
+
+        .hobby-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 9px;
+            margin-top: 22px;
+        }
+
+        .hobby {
+            padding: 7px 12px;
+            border: 0;
+            border-radius: 12px;
+            color: #627568;
+            background: #f2f5ee;
+        }
+
+        .wide-card {
+            grid-column: 1 / -1;
+            padding: 30px;
+        }
+
+        .plan-intro {
+            max-width: 710px;
+            margin: -6px 0 22px;
+            color: var(--muted);
+            font-size: 0.91rem;
+        }
+
+        .plan-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 13px;
+        }
+
+        .plan-item {
+            position: relative;
+            min-height: 160px;
+            overflow: hidden;
+            padding: 20px;
+            border: 1px solid #edf0e8;
+            border-radius: 17px;
+            background: #f7f8f3;
+            transition: background 180ms ease, transform 180ms ease;
+        }
+
+        .plan-item:hover {
+            background: #eef4ed;
+            transform: translateY(-3px);
+        }
+
+        .plan-number {
+            position: absolute;
+            top: 7px;
+            right: 14px;
+            color: rgba(102, 139, 114, 0.12);
+            font-family: Georgia, serif;
+            font-size: 3.5rem;
+            line-height: 1;
+        }
+
+        .plan-item h3 {
+            position: relative;
+            margin: 0 0 9px;
+            color: var(--green-dark);
+            font-family: "STSong", "Songti SC", "SimSun", serif;
+            font-size: 1.06rem;
+            font-weight: 500;
+        }
+
+        .plan-item p {
+            position: relative;
+            margin: 0;
+            color: #586a5f;
+            font-size: 0.87rem;
+        }
+
+        .gallery-tools {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .gallery-count {
+            color: #8b998f;
+            font-size: 0.82rem;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            grid-auto-rows: 190px;
+            gap: 14px;
+        }
+
+        .photo-card {
+            position: relative;
+            overflow: hidden;
+            padding: 0;
+            border: 1px solid rgba(255, 255, 255, 0.92);
+            border-radius: 18px;
+            background: #e9eee5;
+            box-shadow: 0 9px 23px rgba(62, 87, 68, 0.08);
+            cursor: zoom-in;
+            isolation: isolate;
+            text-align: left;
+        }
+
+        .photo-card:nth-child(6n + 1),
+        .photo-card:nth-child(6n + 5) {
+            grid-row: span 2;
+        }
+
+        .photo-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 450ms cubic-bezier(0.2, 0.7, 0.2, 1), filter 300ms ease;
+        }
+
+        .photo-card:hover img,
+        .photo-card:focus-visible img {
+            filter: saturate(1.08);
+            transform: scale(1.055);
+        }
+
+        .photo-caption {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            padding: 28px 14px 12px;
+            color: white;
+            background: linear-gradient(transparent, rgba(24, 42, 33, 0.62));
+            font-size: 0.78rem;
+            letter-spacing: 0.06em;
+            opacity: 0;
+            transform: translateY(5px);
+            transition: opacity 200ms ease, transform 200ms ease;
+        }
+
+        .photo-card:hover .photo-caption,
+        .photo-card:focus-visible .photo-caption {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .gallery-hint {
+            margin: 16px 0 0;
+            color: #8b998f;
+            font-size: 0.8rem;
+        }
+
+        .guestbook {
+            display: grid;
+            grid-template-columns: 0.85fr 1.15fr;
+            gap: 20px;
+            align-items: start;
+        }
+
+        .guestbook-intro {
+            padding: 27px 28px;
+            border-radius: 22px;
+            color: #f8fbf6;
+            background: linear-gradient(145deg, #6f957a, #4f735b);
+            box-shadow: 0 18px 38px rgba(70, 105, 78, 0.17);
+        }
+
+        .guestbook-intro .section-kicker {
+            color: #d3e2d1;
+        }
+
+        .guestbook-intro h3 {
+            margin: 0 0 12px;
+            font-family: "STSong", "Songti SC", "SimSun", serif;
+            font-size: 1.55rem;
+            font-weight: 500;
+        }
+
+        .guestbook-intro p {
+            margin: 0;
+            color: rgba(248, 251, 246, 0.82);
+            font-size: 0.88rem;
+        }
+
+        .guestbook-form {
+            padding: 25px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 0.65fr 1.35fr;
+            gap: 12px;
+        }
+
+        .field label {
+            display: block;
+            margin-bottom: 6px;
+            color: #718177;
+            font-size: 0.78rem;
+        }
+
+        .field input,
+        .field textarea {
+            width: 100%;
+            border: 1px solid #e4e9df;
+            border-radius: 12px;
+            color: var(--ink);
+            background: #fbfcf9;
+            transition: border-color 180ms ease, box-shadow 180ms ease;
+        }
+
+        .field input {
+            min-height: 44px;
+            padding: 9px 12px;
+        }
+
+        .field textarea {
+            display: block;
+            min-height: 105px;
+            resize: vertical;
+            padding: 10px 12px;
+        }
+
+        .field input:focus,
+        .field textarea:focus {
+            border-color: #9db8a0;
+            box-shadow: 0 0 0 3px rgba(102, 139, 114, 0.1);
+            outline: none;
+        }
+
+        .message-field {
+            margin-top: 13px;
+        }
+
+        .form-bottom {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            margin-top: 12px;
+        }
+
+        .char-count,
+        .privacy-note {
+            color: #8b998f;
+            font-size: 0.76rem;
+        }
+
+        .send-button,
+        .clear-button {
+            border: 0;
+            cursor: pointer;
+            transition: background 180ms ease, transform 180ms ease;
+        }
+
+        .send-button {
+            padding: 9px 19px;
+            border-radius: 999px;
+            color: white;
+            background: var(--green-dark);
+            font-size: 0.86rem;
+        }
+
+        .send-button:hover {
+            background: #365b45;
+            transform: translateY(-1px);
+        }
+
+        .guestbook-feedback {
+            min-height: 1.5em;
+            margin: 8px 0 0;
+            color: var(--green-dark);
+            font-size: 0.8rem;
+        }
+
+        .message-list {
+            display: grid;
+            gap: 10px;
+            margin-top: 16px;
+        }
+
+        .message-item {
+            padding: 14px 16px;
+            border: 1px solid #e8ede5;
+            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.72);
+            animation: arrive 320ms ease both;
+        }
+
+        .message-meta {
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+            color: #87958a;
+            font-size: 0.74rem;
+        }
+
+        .message-meta strong {
+            color: var(--green-dark);
+            font-weight: 500;
+        }
+
+        .message-text {
+            margin: 6px 0 0;
+            color: #51645a;
+            font-size: 0.88rem;
+            white-space: pre-wrap;
+            overflow-wrap: anywhere;
+        }
+
+        .empty-messages {
+            margin: 0;
+            color: #8b998f;
+            font-size: 0.84rem;
+            text-align: center;
+        }
+
+        .back-to-top {
+            position: fixed;
+            z-index: 15;
+            right: 22px;
+            bottom: 22px;
+            display: grid;
+            width: 46px;
+            height: 46px;
+            place-items: center;
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            color: white;
+            background: rgba(69, 107, 85, 0.92);
+            box-shadow: 0 8px 24px rgba(45, 70, 53, 0.22);
+            cursor: pointer;
+            opacity: 0;
+            pointer-events: none;
+            transform: translateY(8px);
+            transition: opacity 180ms ease, transform 180ms ease, background 180ms ease;
+        }
+
+        .back-to-top.is-visible {
+            opacity: 1;
+            pointer-events: auto;
+            transform: translateY(0);
+        }
+
+        .back-to-top:hover {
+            background: #365b45;
+        }
+
+        .back-to-top svg {
+            width: 19px;
+            height: 19px;
+        }
+
+        .lightbox {
+            width: min(92vw, 980px);
+            max-width: none;
+            max-height: 92vh;
+            padding: 0;
+            overflow: visible;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 20px;
+            background: #17231c;
+            box-shadow: 0 25px 90px rgba(0, 0, 0, 0.38);
+        }
+
+        .lightbox::backdrop {
+            background: rgba(17, 29, 22, 0.78);
+            backdrop-filter: blur(5px);
+        }
+
+        .lightbox-content {
+            position: relative;
+            display: grid;
+            min-height: 180px;
+            place-items: center;
+        }
+
+        .lightbox img {
+            display: block;
+            max-width: 100%;
+            max-height: 82vh;
+            border-radius: 19px;
+            object-fit: contain;
+        }
+
+        .lightbox-close,
+        .lightbox-step {
+            position: absolute;
+            z-index: 1;
+            display: grid;
+            width: 42px;
+            height: 42px;
+            place-items: center;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            color: white;
+            background: rgba(23, 35, 28, 0.72);
+            cursor: pointer;
+        }
+
+        .lightbox-close {
+            top: 12px;
+            right: 12px;
+            font-size: 1.35rem;
+            line-height: 1;
+        }
+
+        .lightbox-step {
+            top: 50%;
+            font-size: 1.4rem;
+            transform: translateY(-50%);
+        }
+
+        .lightbox-step:hover,
+        .lightbox-close:hover {
+            background: rgba(69, 107, 85, 0.95);
+        }
+
+        .lightbox-prev {
+            left: 12px;
+        }
+
+        .lightbox-next {
+            right: 12px;
+        }
+
+        .lightbox-caption {
+            position: absolute;
+            right: 60px;
+            bottom: 12px;
+            left: 60px;
+            color: white;
+            font-size: 0.82rem;
+            text-align: center;
+            text-shadow: 0 1px 5px rgba(0, 0, 0, 0.75);
+            pointer-events: none;
+        }
+
+        footer {
+            padding-top: 52px;
+            color: #94a097;
+            font-size: 0.78rem;
+            text-align: center;
+            letter-spacing: 0.08em;
+        }
+
+        @keyframes arrive {
+            from {
+                opacity: 0;
+                transform: translateY(8px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 760px) {
+            .nav-wrap {
+                width: min(100% - 24px, 640px);
+                min-height: 62px;
+                flex-direction: column;
+                justify-content: center;
+                gap: 1px;
+                padding: 6px 0 8px;
+            }
+
+            .brand {
+                font-size: 1rem;
+            }
+
+            .nav-links {
+                width: 100%;
+                justify-content: flex-start;
+                gap: 2px;
+                overflow-x: auto;
+                scrollbar-width: none;
+            }
+
+            .nav-links::-webkit-scrollbar {
+                display: none;
+            }
+
+            .nav-links a {
+                padding: 5px 10px;
+                font-size: 0.78rem;
+                white-space: nowrap;
+            }
+
+            html {
+                scroll-padding-top: 108px;
+            }
+
+            .page {
+                width: min(100% - 28px, 620px);
+                padding-top: 18px;
+            }
+
+            .hero {
+                min-height: auto;
+                grid-template-columns: 1fr 0.7fr;
+                gap: 12px;
+                padding: clamp(24px, 6vw, 42px);
+                border-radius: 24px;
+            }
+
+            .hero-portrait {
+                width: min(100%, 195px);
+            }
+
+            .hero-note {
+                margin-top: 19px;
+                font-size: 0.94rem;
+            }
+
+            .hero::after {
+                top: -150px;
+                right: -145px;
+            }
+
+            .section {
+                padding-top: 54px;
+                scroll-margin-top: 110px;
+            }
+
+            .info-grid,
+            .guestbook {
+                grid-template-columns: 1fr;
+                gap: 14px;
+            }
+
+            .wide-card {
+                grid-column: auto;
+                padding: 23px;
+            }
+
+            .plan-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .plan-item {
+                min-height: auto;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                grid-auto-rows: 165px;
+                gap: 10px;
+            }
+
+            .section-heading {
+                align-items: start;
+            }
+
+            .section-aside {
+                max-width: 180px;
+                font-size: 0.77rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .page {
+                width: min(100% - 22px, 420px);
+            }
+
+            .hero {
+                grid-template-columns: 1fr;
+                padding: 28px 24px;
+            }
+
+            .hero-copy {
+                padding-right: 8px;
+            }
+
+            .hero-portrait {
+                width: 155px;
+                margin-top: 7px;
+            }
+
+            .hero-badge {
+                right: calc(50% - 95px);
+                bottom: 17px;
+            }
+
+            .section-heading {
+                display: block;
+            }
+
+            .section-aside {
+                max-width: none;
+                margin-top: 8px;
+                text-align: left;
+            }
+
+            .info-card {
+                padding: 22px;
+            }
+
+            .gallery-grid {
+                grid-auto-rows: 135px;
+                gap: 8px;
+            }
+
+            .photo-card {
+                border-radius: 14px;
+            }
+
+            .photo-caption {
+                padding: 22px 9px 8px;
+                font-size: 0.7rem;
+                opacity: 1;
+                transform: none;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+
+            .guestbook-form,
+            .guestbook-intro {
+                padding: 22px;
+            }
+
+            .form-bottom {
+                align-items: end;
+            }
+
+            .privacy-note {
+                max-width: 190px;
+            }
+
+            .lightbox {
+                width: 96vw;
+            }
+
+            .lightbox-step {
+                width: 36px;
+                height: 36px;
+            }
+
+            .lightbox-prev {
+                left: 7px;
+            }
+
+            .lightbox-next {
+                right: 7px;
+            }
+
+            .back-to-top {
+                right: 13px;
+                bottom: 13px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                scroll-behavior: auto !important;
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
 </head>
 <body>
-    <p></p>
+    <header class="site-header">
+        <nav class="nav-wrap" aria-label="页面导览">
+            <a class="brand" href="#home">唐佳琪 <span>·</span> 个人主页</a>
+            <ul class="nav-links">
+                <li><a href="#basic">01 基本信息</a></li>
+                <li><a href="#campus">02 校内信息</a></li>
+                <li><a href="#future">03 未来规划</a></li>
+                <li><a href="#gallery">04 个人风采</a></li>
+                <li><a href="#guestbook">05 留言</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="page" id="home">
+        <section class="hero" aria-labelledby="page-title">
+            <div class="hero-copy">
+                <p class="eyebrow">HELLO, NICE TO MEET YOU</p>
+                <h1 id="page-title">唐佳琪</h1>
+                <p class="hero-subtitle">中南大学 · 计算机学院 · 软件工程 2601 班</p>
+                <p class="hero-note">
+                    乐观开朗，阳光自信，也始终对生活保有好奇。
+                    <strong>热爱尝试新事物</strong>，在学习与生活的点滴中积累成长。
+                </p>
+            </div>
+            <div class="hero-portrait">
+                <img src="照片/微信图片_20261113215035_12_2.jpg" alt="唐佳琪的生活照片">
+                <span class="hero-badge">保持热爱 · 慢慢成长</span>
+            </div>
+        </section>
+
+        <section class="section" id="basic" aria-labelledby="basic-title">
+            <div class="section-heading">
+                <div>
+                    <p class="section-kicker">A LITTLE ABOUT ME</p>
+                    <h2 id="basic-title">01 / 基本信息</h2>
+                </div>
+                <p class="section-aside">关于我的一些小小注脚，从熟悉自己开始。</p>
+            </div>
+            <div class="info-grid">
+                <article class="card info-card">
+                    <h3 class="card-title">个人档案</h3>
+                    <dl class="facts">
+                        <div><dt>姓名</dt><dd>唐佳琪</dd></div>
+                        <div><dt>性别</dt><dd>女</dd></div>
+                        <div><dt>星座</dt><dd>处女座</dd></div>
+                        <div><dt>MBTI</dt><dd>ENTJ</dd></div>
+                        <div><dt>生源地</dt><dd>桂林市</dd></div>
+                        <div><dt>家乡</dt><dd>湖南省永州市</dd></div>
+                    </dl>
+                </article>
+                <article class="card info-card">
+                    <h3 class="card-title">我的性格关键词</h3>
+                    <p class="hero-note intro-text">
+                        待人真诚，做事积极。面对新鲜事物，我愿意带着热情去了解、去尝试，也在一次次体验中发现更多可能。
+                    </p>
+                    <div class="traits" aria-label="性格特点">
+                        <span class="trait">乐观开朗</span>
+                        <span class="trait">阳光自信</span>
+                        <span class="trait">热爱尝新</span>
+                        <span class="trait">积极行动</span>
+                    </div>
+                    <div class="hobby-row" aria-label="课余爱好">
+                        <span class="hobby">逛街</span>
+                        <span class="hobby">发现美食</span>
+                        <span class="hobby">看各种演出</span>
+                        <span class="hobby">追剧追综艺</span>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section class="section" id="campus" aria-labelledby="campus-title">
+            <div class="section-heading">
+                <div>
+                    <p class="section-kicker">CAMPUS LIFE</p>
+                    <h2 id="campus-title">02 / 校内信息</h2>
+                </div>
+                <p class="section-aside">在校园里学习、协作，也把每一份责任认真做好。</p>
+            </div>
+            <div class="info-grid">
+                <article class="card info-card campus-card">
+                    <h3 class="card-title">我的校园身份</h3>
+                    <ul class="campus-list">
+                        <li><span class="campus-label">学校</span><span class="campus-value">中南大学</span></li>
+                        <li><span class="campus-label">学院</span><span class="campus-value">计算机学院</span></li>
+                        <li><span class="campus-label">专业班级</span><span class="campus-value">软件工程 2601 班</span></li>
+                    </ul>
+                </article>
+                <article class="card info-card campus-card">
+                    <h3 class="card-title">校园中的我</h3>
+                    <ul class="campus-list">
+                        <li><span class="campus-label">担任职务</span><span class="campus-value">软件工程 2601 班班长</span></li>
+                        <li><span class="campus-label">学生组织</span><span class="campus-value">2027 级中南大学战鹰团三排二班队员</span></li>
+                    </ul>
+                    <div class="hobby-row">
+                        <span class="hobby">认真负责</span>
+                        <span class="hobby">协作沟通</span>
+                        <span class="hobby">积极参与</span>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section class="section" id="future" aria-labelledby="future-title">
+            <div class="section-heading">
+                <div>
+                    <p class="section-kicker">KEEP LEARNING</p>
+                    <h2 id="future-title">03 / 未来规划</h2>
+                </div>
+                <p class="section-aside">拥抱新工具，也不忘打牢基础；保持思考，一步步向前。</p>
+            </div>
+            <article class="card wide-card">
+                <h3 class="card-title">让 AI 成为助力，让学习回归理解</h3>
+                <p class="plan-intro">
+                    面对 AI 带来的变化，我会适时调整学习方式，主动了解并合理运用 AI，
+                    让它为专业学习提供帮助；同时坚持理解知识的原理与底层逻辑，熟练掌握专业基础，
+                    并通过持续实践提升解决问题的能力。
+                </p>
+                <div class="plan-grid">
+                    <article class="plan-item">
+                        <span class="plan-number">01</span>
+                        <h3>善用 AI 工具</h3>
+                        <p>将 AI 用于辅助查阅资料、梳理思路与复习巩固，提升学习效率，也保持独立判断。</p>
+                    </article>
+                    <article class="plan-item">
+                        <span class="plan-number">02</span>
+                        <h3>理解原理本质</h3>
+                        <p>不止于记住结论，更关注专业知识背后的原理、方法和底层逻辑，建立扎实的知识体系。</p>
+                    </article>
+                    <article class="plan-item">
+                        <span class="plan-number">03</span>
+                        <h3>持续实践成长</h3>
+                        <p>熟练掌握基本专业知识，并在课程学习与动手实践中不断总结，逐步提升解决实际问题的能力。</p>
+                    </article>
+                </div>
+            </article>
+        </section>
+
+        <section class="section" id="gallery" aria-labelledby="gallery-title">
+            <div class="section-heading">
+                <div>
+                    <p class="section-kicker">LIFE IN FRAGMENTS</p>
+                    <h2 id="gallery-title">04 / 个人风采</h2>
+                </div>
+                <div class="gallery-tools">
+                    <span class="gallery-count">10 张生活片段</span>
+                </div>
+            </div>
+            <div class="gallery-grid" aria-label="个人照片，点击可放大查看">
+                <button class="photo-card" type="button" data-index="0" aria-label="放大查看生活片段 01">
+                    <img src="照片/微信图片_20261113215034_11_2.jpg" alt="唐佳琪生活片段 01" loading="lazy">
+                    <span class="photo-caption">生活片段 · 01</span>
+                </button>
+                <button class="photo-card" type="button" data-index="1" aria-label="放大查看生活片段 02">
+                    <img src="照片/微信图片_20261113215035_12_2.jpg" alt="唐佳琪生活片段 02" loading="lazy">
+                    <span class="photo-caption">生活片段 · 02</span>
+                </button>
+                <button class="photo-card" type="button" data-index="2" aria-label="放大查看生活片段 03">
+                    <img src="照片/微信图片_20261113215037_13_2.jpg" alt="唐佳琪生活片段 03" loading="lazy">
+                    <span class="photo-caption">生活片段 · 03</span>
+                </button>
+                <button class="photo-card" type="button" data-index="3" aria-label="放大查看生活片段 04">
+                    <img src="照片/微信图片_20261113215038_14_2.jpg" alt="唐佳琪生活片段 04" loading="lazy">
+                    <span class="photo-caption">生活片段 · 04</span>
+                </button>
+                <button class="photo-card" type="button" data-index="4" aria-label="放大查看生活片段 05">
+                    <img src="照片/微信图片_20261113215039_15_2.jpg" alt="唐佳琪生活片段 05" loading="lazy">
+                    <span class="photo-caption">生活片段 · 05</span>
+                </button>
+                <button class="photo-card" type="button" data-index="5" aria-label="放大查看生活片段 06">
+                    <img src="照片/微信图片_20261113215041_16_2.jpg" alt="唐佳琪生活片段 06" loading="lazy">
+                    <span class="photo-caption">生活片段 · 06</span>
+                </button>
+                <button class="photo-card" type="button" data-index="6" aria-label="放大查看生活片段 07">
+                    <img src="照片/微信图片_20261113215042_17_2.jpg" alt="唐佳琪生活片段 07" loading="lazy">
+                    <span class="photo-caption">生活片段 · 07</span>
+                </button>
+                <button class="photo-card" type="button" data-index="7" aria-label="放大查看生活片段 08">
+                    <img src="照片/微信图片_20261113215043_18_2.jpg" alt="唐佳琪生活片段 08" loading="lazy">
+                    <span class="photo-caption">生活片段 · 08</span>
+                </button>
+                <button class="photo-card" type="button" data-index="8" aria-label="放大查看生活片段 09">
+                    <img src="照片/微信图片_20261113215043_19_2.jpg" alt="唐佳琪生活片段 09" loading="lazy">
+                    <span class="photo-caption">生活片段 · 09</span>
+                </button>
+                <button class="photo-card" type="button" data-index="9" aria-label="放大查看生活片段 10">
+                    <img src="照片/微信图片_20261113215044_20_2.jpg" alt="唐佳琪生活片段 10" loading="lazy">
+                    <span class="photo-caption">生活片段 · 10</span>
+                </button>
+            </div>
+            <p class="gallery-hint">点选任意照片可放大浏览，也可以使用左右按钮切换。</p>
+        </section>
+
+        <section class="section" id="guestbook" aria-labelledby="guestbook-title">
+            <div class="section-heading">
+                <div>
+                    <p class="section-kicker">LEAVE A NOTE</p>
+                    <h2 id="guestbook-title">05 / 留言</h2>
+                </div>
+                <p class="section-aside">欢迎留下问候、鼓励，或分享一个有趣的小瞬间。</p>
+            </div>
+            <div class="guestbook">
+                <aside class="guestbook-intro">
+                    <p class="section-kicker">A LITTLE WARMTH</p>
+                    <h3>谢谢你来到这里</h3>
+                    <p>每一份善意都值得被珍藏。写下你的留言，为这次相遇留下一个小小的纪念吧。</p>
+                </aside>
+                <div>
+                    <form class="card guestbook-form" id="message-form">
+                        <div class="form-row">
+                            <div class="field">
+                                <label for="message-name">怎么称呼你</label>
+                                <input id="message-name" name="name" type="text" maxlength="20" placeholder="留下你的名字" autocomplete="name" required>
+                            </div>
+                            <div class="field">
+                                <label for="message-content">写下留言</label>
+                                <textarea id="message-content" class="message-input" name="message" maxlength="200" placeholder="说点什么吧……" required></textarea>
+                            </div>
+                        </div>
+                        <div class="form-bottom">
+                            <span class="char-count" id="char-count">0 / 200</span>
+                            <button class="send-button" type="submit">送出留言 ↗</button>
+                        </div>
+                        <p class="guestbook-feedback" id="guestbook-feedback" role="status" aria-live="polite"></p>
+                        <p class="privacy-note">留言仅保存在当前浏览器，不会上传到网络。</p>
+                    </form>
+                    <div class="message-list" id="message-list" aria-live="polite"></div>
+                </div>
+            </div>
+        </section>
+
+        <footer>保持好奇，踏实前行 <span aria-hidden="true">·</span> 唐佳琪</footer>
+    </main>
+
+    <button class="back-to-top" id="back-to-top" type="button" aria-label="返回页面顶部" title="返回顶部">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M12 19V5m0 0L6 11m6-6 6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path>
+        </svg>
+    </button>
+
+    <dialog class="lightbox" id="lightbox" aria-label="照片预览">
+        <div class="lightbox-content">
+            <button class="lightbox-close" id="lightbox-close" type="button" aria-label="关闭照片预览">×</button>
+            <button class="lightbox-step lightbox-prev" id="lightbox-prev" type="button" aria-label="上一张照片">‹</button>
+            <img id="lightbox-image" src="" alt="">
+            <button class="lightbox-step lightbox-next" id="lightbox-next" type="button" aria-label="下一张照片">›</button>
+            <span class="lightbox-caption" id="lightbox-caption"></span>
+        </div>
+    </dialog>
+
+    <script>
+        const navLinks = [...document.querySelectorAll(".nav-links a")];
+        const sections = navLinks
+            .map((link) => document.querySelector(link.getAttribute("href")))
+            .filter(Boolean);
+
+        if ("IntersectionObserver" in window) {
+            const sectionObserver = new IntersectionObserver((entries) => {
+                const visibleSection = entries
+                    .filter((entry) => entry.isIntersecting)
+                    .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+
+                if (!visibleSection) return;
+
+                navLinks.forEach((link) => {
+                    if (link.getAttribute("href") === `#${visibleSection.target.id}`) {
+                        link.setAttribute("aria-current", "location");
+                    } else {
+                        link.removeAttribute("aria-current");
+                    }
+                });
+            }, { rootMargin: "-25% 0px -60% 0px", threshold: [0, 0.15, 0.4] });
+
+            sections.forEach((section) => sectionObserver.observe(section));
+        }
+
+        const backToTop = document.getElementById("back-to-top");
+        const updateBackToTop = () => {
+            backToTop.classList.toggle("is-visible", window.scrollY > 420);
+        };
+
+        window.addEventListener("scroll", updateBackToTop, { passive: true });
+        updateBackToTop();
+        backToTop.addEventListener("click", () => {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+
+        const photoCards = [...document.querySelectorAll(".photo-card")];
+        const lightbox = document.getElementById("lightbox");
+        const lightboxImage = document.getElementById("lightbox-image");
+        const lightboxCaption = document.getElementById("lightbox-caption");
+        let activePhotoIndex = 0;
+
+        const showPhoto = (index) => {
+            activePhotoIndex = (index + photoCards.length) % photoCards.length;
+            const card = photoCards[activePhotoIndex];
+            const image = card.querySelector("img");
+            lightboxImage.src = image.src;
+            lightboxImage.alt = image.alt;
+            lightboxCaption.textContent = `生活片段 · ${String(activePhotoIndex + 1).padStart(2, "0")} / ${photoCards.length}`;
+        };
+
+        photoCards.forEach((card, index) => {
+            card.addEventListener("click", () => {
+                showPhoto(index);
+                lightbox.showModal();
+            });
+        });
+
+        document.getElementById("lightbox-close").addEventListener("click", () => lightbox.close());
+        document.getElementById("lightbox-prev").addEventListener("click", () => showPhoto(activePhotoIndex - 1));
+        document.getElementById("lightbox-next").addEventListener("click", () => showPhoto(activePhotoIndex + 1));
+        lightbox.addEventListener("click", (event) => {
+            if (event.target === lightbox) lightbox.close();
+        });
+
+        const messageForm = document.getElementById("message-form");
+        const nameInput = document.getElementById("message-name");
+        const messageInput = document.getElementById("message-content");
+        const charCount = document.getElementById("char-count");
+        const messageList = document.getElementById("message-list");
+        const feedback = document.getElementById("guestbook-feedback");
+        const storageKey = "tang-jiaqi-guestbook";
+        let messages = [];
+
+        const readMessages = () => {
+            try {
+                const savedMessages = localStorage.getItem(storageKey);
+                if (!savedMessages) return [];
+
+                const parsedMessages = JSON.parse(savedMessages);
+                if (!Array.isArray(parsedMessages)) {
+                    throw new TypeError("留言数据格式不正确");
+                }
+
+                return parsedMessages.filter((message) =>
+                    message &&
+                    typeof message.name === "string" &&
+                    typeof message.text === "string" &&
+                    typeof message.date === "string"
+                ).slice(0, 30);
+            } catch (error) {
+                console.error("读取本地留言失败：", error);
+                feedback.textContent = "无法读取之前保存的留言；你仍可以在本次浏览中留言。";
+                return [];
+            }
+        };
+
+        const renderMessages = () => {
+            messageList.replaceChildren();
+
+            if (messages.length === 0) {
+                const emptyMessage = document.createElement("p");
+                emptyMessage.className = "empty-messages";
+                emptyMessage.textContent = "还没有留言，来写下第一条吧。";
+                messageList.append(emptyMessage);
+                return;
+            }
+
+            messages.forEach((message) => {
+                const item = document.createElement("article");
+                item.className = "message-item";
+
+                const meta = document.createElement("div");
+                meta.className = "message-meta";
+
+                const name = document.createElement("strong");
+                name.textContent = message.name;
+
+                const date = document.createElement("time");
+                date.textContent = message.date;
+
+                const text = document.createElement("p");
+                text.className = "message-text";
+                text.textContent = message.text;
+
+                meta.append(name, date);
+                item.append(meta, text);
+                messageList.append(item);
+            });
+        };
+
+        messages = readMessages();
+        renderMessages();
+
+        messageInput.addEventListener("input", () => {
+            charCount.textContent = `${messageInput.value.length} / 200`;
+        });
+
+        messageForm.addEventListener("submit", (event) => {
+            event.preventDefault();
+            const name = nameInput.value.trim();
+            const text = messageInput.value.trim();
+
+            if (!name || !text) {
+                feedback.textContent = "请先填写称呼和留言内容。";
+                return;
+            }
+
+            const message = {
+                name: name.slice(0, 20),
+                text: text.slice(0, 200),
+                date: new Intl.DateTimeFormat("zh-CN", { dateStyle: "medium" }).format(new Date())
+            };
+            messages = [message, ...messages].slice(0, 30);
+
+            try {
+                localStorage.setItem(storageKey, JSON.stringify(messages));
+                feedback.textContent = "留言已保存，感谢你的分享！";
+            } catch (error) {
+                console.error("保存本地留言失败：", error);
+                feedback.textContent = "浏览器未能保存留言；这条留言仍会显示到页面关闭为止。";
+            }
+
+            renderMessages();
+            messageForm.reset();
+            charCount.textContent = "0 / 200";
+        });
+    </script>
 </body>
 </html>
